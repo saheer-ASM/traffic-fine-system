@@ -1,0 +1,60 @@
+# Create .gitignore file
+echo "# Flutter/Dart
+*.lock
+*.iml
+*.iws
+.idea/
+.settings/
+.vscode/
+.DS_Store
+.dart_tool/
+.pub/
+build/
+generated/
+*.swp
+*.swo
+*~
+
+# Android
+*.orig
+android/local.properties
+android/app/.gitignore
+android/.gradle/
+android/.settings/
+android/gradlew
+android/gradlew.bat
+
+# iOS
+ios/Flutter/App.framework/
+ios/Flutter/Ephemeral/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Podfile.lock
+ios/.symlinks/
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Web
+.web/
+
+# macOS
+macos/Flutter/Flutter-Debug.xcconfig
+macos/Flutter/Flutter-Release.xcconfig
+macos/Flutter/GeneratedPluginRegistrant.*
+
+# Windows
+windows/flutter/GeneratedPluginRegistrant.*
+windows/runner/Debug/
+windows/runner/Release/
+
+# Linux
+linux/flutter/GeneratedPluginRegistrant.*
+
+# Testing
+coverage/
+*.lcov
+
+# Exceptions
+!/.gitignore
+!/packages
+!/pubspec.lock
+" > .gitignore
