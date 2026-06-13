@@ -35,3 +35,37 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+class FineProvider extends ChangeNotifier {
+  Fine? _fine;
+  bool _isLoading = false;
+  String? _error;
+
+  Fine? get fine => _fine;
+  bool get isLoading => _isLoading;
+  String? get error => _error;
+
+  Future<void> searchFine(String reference) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      _fine = await ApiService.getFineByReference(reference);
+      _error = null;
+    } catch (e) {
+      _error = e.toString();
+      _fine = null;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  void clearFine() {
+    _fine = null;
+    _error = null;
+    notifyListeners();
+  }
+}
