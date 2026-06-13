@@ -32,3 +32,45 @@ class Fine {
     );
   }
 }
+class PaymentResponse {
+  final String transactionId;
+  final String status;
+  final double amount;
+
+  PaymentResponse({
+    required this.transactionId,
+    required this.status,
+    required this.amount,
+  });
+
+  factory PaymentResponse.fromJson(Map<String, dynamic> json) {
+    return PaymentResponse(
+      transactionId: json['transactionId'],
+      status: json['status'] ?? 'SUCCESS',
+      amount: (json['amount'] as num).toDouble(),
+    );
+  }
+}
+
+class User {
+  final String id;
+  final String email;
+  final String fullName;
+  final String token;
+
+  User({
+    required this.id,
+    required this.email,
+    required this.fullName,
+    required this.token,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'].toString(),
+      email: json['email'],
+      fullName: json['fullName'],
+      token: json['token'],
+    );
+  }
+}
