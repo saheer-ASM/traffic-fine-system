@@ -69,3 +69,41 @@ class FineProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+class PaymentProvider extends ChangeNotifier {
+  bool _isProcessing = false;
+  String? _error;
+  PaymentResponse? _lastPayment;
+
+  bool get isProcessing => _isProcessing;
+  String? get error => _error;
+  PaymentResponse? get lastPayment => _lastPayment;
+
+  Future<bool> processPayment(
+    int fineId,
+    String paymentMethod,
+    String paymentGatewayRef,
+  ) async {
+    _isProcessing = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      _lastPayment = await ApiService.processPayment(
+        fineId,
+        paymentMethod,
+        paymentGatewayRef,
+      );
+      _error = null;
+      return true;
+    } catch (e) {
+      _error = e.toString();
+      _lastPayment = null;
+      return false;
+    } finally {
+      _isProcessing = false;
+      notifyListeners();
+    }
+  }
+}
